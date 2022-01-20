@@ -1,8 +1,5 @@
 
-// this stack has a limit of 5 items at max
-// it should raise an exception whenever this limit is reached
-// it would also raise an exception whenever we peek or pop from an empty stack
-public class StackUsingArrayWithExceptions {
+public class StackUsingArrayWithExceptions implements StackWithExceptionsInterface {
     // I am gonna an array as CDT
     Integer [] arr = new Integer[100]; // in C++  - int arr[100];
 
@@ -10,7 +7,8 @@ public class StackUsingArrayWithExceptions {
     int size = 0;
 
     // push – insert an item at the top of the stack
-    void push(int a) throws PushingIntoFullStackCheckedException{
+
+    public void push(int a) throws PushingIntoFullStackCheckedException{
 
         if(size == 5 ){
             throw new PushingIntoFullStackCheckedException("the Limit of the stack has been reached!");
@@ -23,7 +21,7 @@ public class StackUsingArrayWithExceptions {
     }
 
     // pop – remove and return the top item
-    int pop() throws AccessingAnEmptyStackCheckedException{
+    public int pop() throws AccessingAnEmptyStackCheckedException{
         if(size == 0)
             throw new AccessingAnEmptyStackCheckedException();
         int temp = arr[top];
@@ -33,7 +31,7 @@ public class StackUsingArrayWithExceptions {
     }
 
     // peek – return the top item
-    int peek(){
+    public int peek(){
         return arr[top];
     }
 
