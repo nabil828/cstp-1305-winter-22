@@ -1,12 +1,21 @@
-public class QueueUsingArray {
-    int arr [] = new int[6];
+public class QueueUsingResizableArray {
+    int arr [] = new int[1];
     int num; // the actual size of the queue
     int front;
-    QueueUsingArray(){
+    QueueUsingResizableArray(){
         num = 0;
         front =0;
     }
+    void resize(){
+        int arr_new [] = new int[arr.length  * 2];
+        for ( int i = 0 ; i< arr.length;i++){
+            arr_new[i] =arr[i];
+        }
+        arr = arr_new;
+    }
     void insert(int a){
+        if(num == arr.length)
+            resize();
         arr[(front + num ) % arr.length] = a;
         num = num  + 1 ;
     }
@@ -19,7 +28,7 @@ public class QueueUsingArray {
     }
 
     public static void main(String[] args) {
-        QueueUsingArray obj = new QueueUsingArray();
+        QueueUsingResizableArray obj = new QueueUsingResizableArray();
         obj.insert(6);
         obj.insert(4);
         obj.insert(7);
