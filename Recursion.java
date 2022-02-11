@@ -45,11 +45,60 @@ public class Recursion {
         }
 
     }
+
+
+    public static void displayArrayFromFirst_iterative(int array [], int first, int last){
+        for(int i = first ; i <= last; i ++ ){
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void displayArrayFromFirst_recursive(int array [], int first, int last){
+        System.out.println(array[first]);
+        if(first < last){
+            displayArrayFromFirst_recursive(array, first + 1 , last);
+        }
+    }
+
+    public static void displayArrayFromLast_recursive(int array [], int first, int last){
+        System.out.println(array[last]);
+        if(first < last){
+            displayArrayFromLast_recursive(array, first  , last  - 1);
+        }
+    }
+    public static void displayArrayFromLast_iterative(int array [], int first, int last){
+        for(int i = last ; i >= first; i-- ){
+            System.out.println(array[i]);
+        }
+    }
+
+    public static  void displayArrayFromMiddle_recursive(int array [], int first, int last){
+        if(first < 0 || last < 0 )
+            return;
+        if(first > last)
+            return;
+        if(first == last) {
+            System.out.println(array[first]);
+        }else{
+            int middle = (first + last ) / 2;
+            System.out.println(array[middle]);
+            displayArrayFromMiddle_recursive(array, first, middle - 1);
+            displayArrayFromMiddle_recursive(array, middle + 1, last);
+
+        }
+    }
     public static void main(String[] args) {
 //        countDown_recursive(10); // 10, 9, 8, ... 1
 //        countUp_recursive(10); // 1, 2, 3, ... 10
 //        countUp_iterative(10); // 1, 2, 3, ... 10
 //        System.out.println(sumOf_iterative(5)); // 1 + 2 + 3 + 4 + 5 = 1
-        System.out.println(sumOf_recursive(5)); // 1 + 2 + 3 + 4 + 5 = 15
+//        System.out.println(sumOf_recursive(5)); // 1 + 2 + 3 + 4 + 5 = 15
+        int []array = new int[5];
+        array = new int []{5, 3, 2, 4, 1};
+//        displayArrayFromFirst_iterative(array, 0, 4); // 5, 3, 2, 4, 1;
+//        displayArrayFromFirst_recursive(array, 0, 4); // 5, 3, 2, 4, 1;
+//        displayArrayFromLast_iterative(array, 0, 4); // 1, 4, 2, 3, 5;
+//        displayArrayFromLast_recursive(array, 0, 4); // 1, 4, 2, 3, 5;
+        displayArrayFromMiddle_recursive(array, 0, 4); // 2, 5, 3, 4, 1
     }
 }
