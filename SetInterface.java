@@ -1,9 +1,9 @@
-public interface SetInterface {
-    void add(int a);
-    void remove(int a);
-    boolean contains(int a);
+public interface SetInterface<T> {
+    void add(T a );
+    void remove(T a);
+    boolean contains(T a);
 
     int getSize();
     boolean isEmpty();
-    int[] toArray();
+    <T> T[] toArray();
 }

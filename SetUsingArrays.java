@@ -1,16 +1,16 @@
-public class SetUsingArrays implements SetInterface{
-    int []arr = new int[1];
+public class SetUsingArrays<T> implements SetInterface<T>{
+    T[]arr = (T[]) new Object[1];
     int size = 0;
 
     void resize(){
-        int arr_new [] = new int[arr.length  * 2];
+        T arr_new [] = (T[])new Object[arr.length  * 2];
         for ( int i = 0 ; i< arr.length;i++){
             arr_new[i] =arr[i];
         }
         arr = arr_new;
     }
 
-    public void add(int a){
+    public void add(T a){
         if(!contains(a)){
             if(size >= .8 * arr.length)
                 resize();
@@ -18,14 +18,14 @@ public class SetUsingArrays implements SetInterface{
         }
     }
 
-    public boolean contains(int a){
+    public boolean contains(T a){
         for(int i = 0; i < size; i++)
             if(arr[i] == a)
                 return true;
         return false;
     }
 
-    public void remove(int a)
+    public void remove(T a)
     {
         // find position
         int i;
@@ -54,30 +54,30 @@ public class SetUsingArrays implements SetInterface{
     }
 
 
-    public int[] toArray(){
-        int []result_array = new int[size];
+    public <T> T[] toArray(){
+        T []result_array = (T[]) new Object[size];
         for(int i = 0 ; i <result_array.length; i++ )
-            result_array[i] = arr[i];
+            result_array[i] = (T) arr[i];
         return  result_array;
     }
 
-    public static SetUsingArrays union(SetUsingArrays aSet, SetUsingArrays anotherSet){
-        SetUsingArrays result = new SetUsingArrays();
-        int [] anotherSet_array = anotherSet.toArray();
+    public static <T>SetUsingArrays union(SetUsingArrays<T> aSet, SetUsingArrays<T> anotherSet){
+        SetUsingArrays<T> result = new SetUsingArrays<T>();
+        T [] anotherSet_array = anotherSet.toArray();
         for(int i = 0 ; i < anotherSet_array.length; i++){
             result.add(anotherSet_array[i]);
         }
 
-        int [] aSet_array = aSet.toArray();
+        T [] aSet_array = aSet.toArray();
         for (int i = 0; i < aSet_array.length; i++){
             result.add(aSet_array[i]);
         }
         return result;
     }
 
-    public static SetUsingArrays difference(SetUsingArrays aSet, SetUsingArrays anotherSet){
-        SetUsingArrays result = new SetUsingArrays();
-        int [] aSet_array = aSet.toArray();
+    public static <T>SetUsingArrays difference(SetUsingArrays<T> aSet, SetUsingArrays<T> anotherSet){
+        SetUsingArrays<T> result = new SetUsingArrays<T>();
+        T [] aSet_array = aSet.toArray();
         for (int i = 0; i < aSet_array.length; i++){
             if(!anotherSet.contains(aSet_array[i]))
                 result.add(aSet_array[i]);
@@ -86,9 +86,10 @@ public class SetUsingArrays implements SetInterface{
         return result;
     }
 
-    public static SetUsingArrays intersection(SetUsingArrays aSet, SetUsingArrays anotherSet){
-        SetUsingArrays result = new SetUsingArrays();
-        int [] aSet_array = aSet.toArray();
+    public static <T> SetUsingArrays intersection(SetUsingArrays<T> aSet, SetUsingArrays<T> anotherSet){
+        SetUsingArrays<T> result = new SetUsingArrays<T>();
+
+        T [] aSet_array = aSet.toArray();
         for(int i = 0 ;  i < aSet_array.length ; i++){
                 if(anotherSet.contains(aSet_array[i]))
                     result.add(aSet_array[i]);
@@ -99,7 +100,7 @@ public class SetUsingArrays implements SetInterface{
 
 
     public static void main(String[] args) {
-        SetUsingArrays aSet = new SetUsingArrays();
+        SetUsingArrays<Integer> aSet = new SetUsingArrays<Integer>();
         aSet.add(3);
         aSet.add(1);
         aSet.add(2);

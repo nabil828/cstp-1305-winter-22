@@ -1,20 +1,19 @@
-public class SetUsingLinkedList implements SetInterface{
+public class SetUsingLinkedList <T> implements SetInterface<T>{
     int size = 0;
-    Node head;
+    NodeGeneric<T> head;
 
-    public void add(int a){
-        Node newNode = new Node();
+    public void add(T a){
+        NodeGeneric<T> newNode = new NodeGeneric<T>();
         newNode.data = a;
         if(!contains(a)){
             newNode.next = head;
             head = newNode;
-
             size++;
         }
     }
 
-    public boolean contains(int a){
-        Node i = head;
+    public boolean contains(T a){
+        NodeGeneric<T> i = head;
         while(i != null){
             if(i.data == a)
                 return true;
@@ -23,12 +22,12 @@ public class SetUsingLinkedList implements SetInterface{
         return false;
     }
 
-    public void remove(int a){
+    public void remove(T a){
         if(contains(a)){
-            Node i = head;
+            NodeGeneric<T> i = head;
 
             // allocate
-            Node prev = i;
+            NodeGeneric<T> prev = i;
             while(i != null){
                 if(a == i.data)
                     break;
@@ -51,9 +50,9 @@ public class SetUsingLinkedList implements SetInterface{
         return size;
     }
 
-    public int[] toArray(){
-        int []result_array = new int[size];
-        Node i = head;
+    public T[] toArray(){
+        T []result_array = (T[])new Object[size];
+        NodeGeneric<T> i = head;
         int counter =0;
         while(i != null) {
             result_array[counter++] = i.data;
@@ -63,23 +62,23 @@ public class SetUsingLinkedList implements SetInterface{
         return  result_array;
     }
 
-    public static SetUsingLinkedList union(SetUsingLinkedList aSet, SetUsingLinkedList anotherSet){
-        SetUsingLinkedList result = new SetUsingLinkedList();
-        int [] anotherSet_array = anotherSet.toArray();
+    public static <T> SetUsingLinkedList union(SetUsingLinkedList<T> aSet, SetUsingLinkedList<T> anotherSet){
+        SetUsingLinkedList<T> result = new SetUsingLinkedList<T>();
+        T [] anotherSet_array = anotherSet.toArray();
         for(int i = 0 ; i < anotherSet_array.length; i++){
             result.add(anotherSet_array[i]);
         }
 
-        int [] aSet_array = aSet.toArray();
+        T [] aSet_array = aSet.toArray();
         for (int i = 0; i < aSet_array.length; i++){
             result.add(aSet_array[i]);
         }
         return result;
     }
 
-    public static SetUsingLinkedList difference(SetUsingLinkedList aSet, SetUsingLinkedList anotherSet){
-        SetUsingLinkedList result = new SetUsingLinkedList();
-        int [] aSet_array = aSet.toArray();
+    public static <T> SetUsingLinkedList difference(SetUsingLinkedList<T> aSet, SetUsingLinkedList<T> anotherSet){
+        SetUsingLinkedList<T> result = new SetUsingLinkedList<T>();
+        T [] aSet_array = aSet.toArray();
         for (int i = 0; i < aSet_array.length; i++){
             if(!anotherSet.contains(aSet_array[i]))
                 result.add(aSet_array[i]);
@@ -88,9 +87,9 @@ public class SetUsingLinkedList implements SetInterface{
         return result;
     }
 
-    public static SetUsingLinkedList intersection(SetUsingLinkedList aSet, SetUsingLinkedList anotherSet){
-        SetUsingLinkedList result = new SetUsingLinkedList();
-        int [] aSet_array = aSet.toArray();
+    public static <T> SetUsingLinkedList intersection(SetUsingLinkedList<T> aSet, SetUsingLinkedList <T> anotherSet){
+        SetUsingLinkedList<T> result = new SetUsingLinkedList<T>();
+        T [] aSet_array = aSet.toArray();
         for(int i = 0 ;  i < aSet_array.length ; i++){
             if(anotherSet.contains(aSet_array[i]))
                 result.add(aSet_array[i]);
@@ -101,7 +100,7 @@ public class SetUsingLinkedList implements SetInterface{
 
 
     public static void main(String[] args) {
-        SetUsingLinkedList aSet = new SetUsingLinkedList();
+        SetUsingLinkedList<Integer> aSet = new SetUsingLinkedList<Integer>();
         aSet.add(3);
         aSet.add(1);
         aSet.add(2);
