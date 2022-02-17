@@ -1,7 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
-
 // This stack will hold up to 5 items only
 // todo ..
 public class StackUsingLinkedListWithExceptions<T> implements StackWithExceptionsInterface<T>{
@@ -16,9 +12,9 @@ public class StackUsingLinkedListWithExceptions<T> implements StackWithException
     int size = 0;
 
     // todo specifications should be provided
-    public void push(T a) throws PushingIntoFullStackCheckedException {
+    public void push(T a) throws AddingIntoFullADTCheckedException {
         if (size == 5)
-            throw new PushingIntoFullStackCheckedException("PushingIntoFullStackCheckedException");
+            throw new AddingIntoFullADTCheckedException("PushingIntoFullStackCheckedException");
         NodeGeneric<T> temp = new NodeGeneric<T>();
         temp.data = a;
         temp.next = null;
@@ -36,9 +32,9 @@ public class StackUsingLinkedListWithExceptions<T> implements StackWithException
 
     // todo specifications should be provided
     // return -1 if the stack is empty .. more on this later when we talk about exceptions
-    public T pop() throws AccessingAnEmptyStackCheckedException {
+    public T pop() throws AccessingAnEmptyADTCheckedException {
         if (size == 0)
-            throw new AccessingAnEmptyStackCheckedException("AccessingAnEmptyStackCheckedException");
+            throw new AccessingAnEmptyADTCheckedException("AccessingAnEmptyStackCheckedException");
         T temp = (T) top.data;
         top = top.next;
 

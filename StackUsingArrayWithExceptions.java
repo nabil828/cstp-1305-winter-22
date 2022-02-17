@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-
 public class StackUsingArrayWithExceptions<T> implements StackWithExceptionsInterface<T> {
     // I am gonna an array as CDT
     T [] arr ; // in C++  - int arr[100];
@@ -12,10 +10,10 @@ public class StackUsingArrayWithExceptions<T> implements StackWithExceptionsInte
 
     // push – insert an item at the top of the stack
 
-    public void push(T a) throws PushingIntoFullStackCheckedException{
+    public void push(T a) throws AddingIntoFullADTCheckedException {
 
         if(size == 5 ){
-            throw new PushingIntoFullStackCheckedException("the Limit of the stack has been reached!");
+            throw new AddingIntoFullADTCheckedException("the Limit of the stack has been reached!");
         }
         top ++;
         arr[top] = a;
@@ -25,9 +23,9 @@ public class StackUsingArrayWithExceptions<T> implements StackWithExceptionsInte
     }
 
     // pop – remove and return the top item
-    public T pop() throws AccessingAnEmptyStackCheckedException{
+    public T pop() throws AccessingAnEmptyADTCheckedException {
         if(size == 0)
-            throw new AccessingAnEmptyStackCheckedException();
+            throw new AccessingAnEmptyADTCheckedException();
         T temp = arr[top];
         top--;
         size--;
@@ -60,9 +58,9 @@ public class StackUsingArrayWithExceptions<T> implements StackWithExceptionsInte
 
 
 
-        }catch(PushingIntoFullStackCheckedException e){
+        }catch(AddingIntoFullADTCheckedException e){
             System.out.println(e.getMessage());
-        }catch (AccessingAnEmptyStackCheckedException obj){
+        }catch (AccessingAnEmptyADTCheckedException obj){
             System.out.println(obj.getMessage());
 
         }

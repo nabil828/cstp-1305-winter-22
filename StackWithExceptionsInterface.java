@@ -5,8 +5,8 @@
 public interface StackWithExceptionsInterface<T> {
     // push – insert an item at the top of the stack
     // @throws PushingIntoFullStackCheckedException exceptoion whenever it is fullge
-    public void push (T a) throws PushingIntoFullStackCheckedException;
+    public void push (T a) throws AddingIntoFullADTCheckedException;
 
-    public T pop() throws AccessingAnEmptyStackCheckedException;
+    public T pop() throws AccessingAnEmptyADTCheckedException;
     public T peek();
 }

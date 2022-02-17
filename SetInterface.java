@@ -1,9 +1,9 @@
 public interface SetInterface<T> {
-    void add(T a );
-    void remove(T a);
-    boolean contains(T a);
+    void add(T a ) throws AddingIntoFullADTCheckedException, AccessingAnEmptyADTCheckedException;
+    void remove(T a)  throws AccessingAnEmptyADTCheckedException;
+    boolean contains(T a)  throws AccessingAnEmptyADTCheckedException;
 
     int getSize();
     boolean isEmpty();
-    <T> T[] toArray();
+    <T> T[] toArray()  throws AccessingAnEmptyADTCheckedException;
 }
