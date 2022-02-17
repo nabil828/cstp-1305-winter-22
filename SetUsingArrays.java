@@ -1,4 +1,4 @@
-public class SetUsingArrays {
+public class SetUsingArrays implements SetInterface{
     int []arr = new int[1];
     int size = 0;
 
@@ -10,7 +10,7 @@ public class SetUsingArrays {
         arr = arr_new;
     }
 
-    void add(int a){
+    public void add(int a){
         if(!contains(a)){
             if(size >= .8 * arr.length)
                 resize();
@@ -18,14 +18,14 @@ public class SetUsingArrays {
         }
     }
 
-    boolean contains(int a){
+    public boolean contains(int a){
         for(int i = 0; i < size; i++)
             if(arr[i] == a)
                 return true;
         return false;
     }
 
-    void remove(int a)
+    public void remove(int a)
     {
         // find position
         int i;
@@ -45,16 +45,16 @@ public class SetUsingArrays {
         size--;
     }
 
-    int getSize(){
+    public int getSize(){
         return size;
     }
 
-    boolean isEmpty(){
+    public boolean isEmpty(){
         return size == 0;
     }
 
 
-    int[] toArray(){
+    public int[] toArray(){
         int []result_array = new int[size];
         for(int i = 0 ; i <result_array.length; i++ )
             result_array[i] = arr[i];

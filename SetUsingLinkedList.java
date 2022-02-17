@@ -1,8 +1,8 @@
-public class SetUsingLinkedList {
+public class SetUsingLinkedList implements SetInterface{
     int size = 0;
     Node head;
 
-    void add(int a){
+    public void add(int a){
         Node newNode = new Node();
         newNode.data = a;
         if(!contains(a)){
@@ -13,7 +13,7 @@ public class SetUsingLinkedList {
         }
     }
 
-    Boolean contains(int a){
+    public boolean contains(int a){
         Node i = head;
         while(i != null){
             if(i.data == a)
@@ -23,7 +23,7 @@ public class SetUsingLinkedList {
         return false;
     }
 
-    void remove(int a){
+    public void remove(int a){
         if(contains(a)){
             Node i = head;
 
@@ -43,15 +43,15 @@ public class SetUsingLinkedList {
         }
     }
 
-    boolean isEmpty(){
+    public boolean isEmpty(){
         return size == 0;
     }
 
-    int getSize(){
+    public int getSize(){
         return size;
     }
 
-    int[] toArray(){
+    public int[] toArray(){
         int []result_array = new int[size];
         Node i = head;
         int counter =0;
