@@ -54,6 +54,50 @@ public class SetUsingArrays {
     }
 
 
+    int[] toArray(){
+        int []result_array = new int[size];
+        for(int i = 0 ; i <result_array.length; i++ )
+            result_array[i] = arr[i];
+        return  result_array;
+    }
+
+    public static SetUsingArrays union(SetUsingArrays aSet, SetUsingArrays anotherSet){
+        SetUsingArrays result = new SetUsingArrays();
+        int [] anotherSet_array = anotherSet.toArray();
+        for(int i = 0 ; i < anotherSet_array.length; i++){
+            result.add(anotherSet_array[i]);
+        }
+
+        int [] aSet_array = aSet.toArray();
+        for (int i = 0; i < aSet_array.length; i++){
+            result.add(aSet_array[i]);
+        }
+        return result;
+    }
+
+    public static SetUsingArrays difference(SetUsingArrays aSet, SetUsingArrays anotherSet){
+        SetUsingArrays result = new SetUsingArrays();
+        int [] aSet_array = aSet.toArray();
+        for (int i = 0; i < aSet_array.length; i++){
+            if(!anotherSet.contains(aSet_array[i]))
+                result.add(aSet_array[i]);
+
+        }
+        return result;
+    }
+
+    public static SetUsingArrays intersection(SetUsingArrays aSet, SetUsingArrays anotherSet){
+        SetUsingArrays result = new SetUsingArrays();
+        int [] aSet_array = aSet.toArray();
+        for(int i = 0 ;  i < aSet_array.length ; i++){
+                if(anotherSet.contains(aSet_array[i]))
+                    result.add(aSet_array[i]);
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
         SetUsingArrays aSet = new SetUsingArrays();
         aSet.add(3);
@@ -71,5 +115,23 @@ public class SetUsingArrays {
         aSet.add(5);
         aSet.add(9);
         aSet.add(80);
+
+        // 3, 2, 50, 9, 80
+
+
+        // Union/addAll, Intersection/retainAll, and Difference/removeAll
+        SetUsingArrays anotherSet = new SetUsingArrays();
+        anotherSet.add(1);
+        anotherSet.add(44);
+
+        SetUsingArrays newSet = union(aSet, anotherSet); // aSet should have  // 3, 2, 50, 9, 80, 1, 44
+        newSet = difference(aSet, anotherSet); // aSet should have  // 3, 2, 50, 9, 80
+        aSet.add(44);
+        newSet = difference(anotherSet, aSet); // aSet should have  // 44
+
+
+        anotherSet.add(80);
+        newSet  = intersection(aSet, anotherSet); // aSet should have 80 and 44
+
     }
 }
