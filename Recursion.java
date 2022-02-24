@@ -87,6 +87,15 @@ public class Recursion {
 
         }
     }
+
+    public static void displayListForward_iterative(Node head){
+        Node tmp = head;
+        while(tmp != null){
+            System.out.println(tmp.data);
+            tmp = tmp.next;
+        }
+
+    }
     public static void main(String[] args) {
 //        countDown_recursive(10); // 10, 9, 8, ... 1
 //        countUp_recursive(10); // 1, 2, 3, ... 10
@@ -94,11 +103,29 @@ public class Recursion {
 //        System.out.println(sumOf_iterative(5)); // 1 + 2 + 3 + 4 + 5 = 1
 //        System.out.println(sumOf_recursive(5)); // 1 + 2 + 3 + 4 + 5 = 15
         int []array = new int[5];
-        array = new int []{5, 3, 2, 4, 1};
+        array = new int []{5, 3, 2, 4, 1, 0};
 //        displayArrayFromFirst_iterative(array, 0, 4); // 5, 3, 2, 4, 1;
 //        displayArrayFromFirst_recursive(array, 0, 4); // 5, 3, 2, 4, 1;
 //        displayArrayFromLast_iterative(array, 0, 4); // 1, 4, 2, 3, 5;
 //        displayArrayFromLast_recursive(array, 0, 4); // 1, 4, 2, 3, 5;
-        displayArrayFromMiddle_recursive(array, 0, 4); // 2, 5, 3, 4, 1
+//        displayArrayFromMiddle_recursive(array, 0, 5); // 2, 5, 3, 4, 1
+
+        Node a = new Node();
+        a.data = 5;
+
+
+        Node b = new Node();
+        b.data = 1;
+
+
+        Node c = new Node();
+        c.data = 3;
+        a.next = b; b.next = c;
+        // 5, 1, 3 frist to last
+        // 3, 1, 5 last to first
+
+        displayListForward_iterative(a); // 5, 1, 3 frist to last
+
+
     }
 }
