@@ -96,6 +96,14 @@ public class Recursion {
         }
 
     }
+
+    public static void displayListForward_recursive(Node head){
+
+        System.out.println(head.data);
+        if(head.next != null)
+            displayListForward_recursive(head.next);
+        
+    }
     public static void main(String[] args) {
 //        countDown_recursive(10); // 10, 9, 8, ... 1
 //        countUp_recursive(10); // 1, 2, 3, ... 10
@@ -124,7 +132,7 @@ public class Recursion {
         // 5, 1, 3 frist to last
         // 3, 1, 5 last to first
 
-        displayListForward_iterative(a); // 5, 1, 3 frist to last
+        displayListForward_recursive(a); // 5, 1, 3 frist to last
 
 
     }
