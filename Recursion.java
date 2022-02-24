@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class Recursion {
 
     static void countDown_iterative(int n){
@@ -97,6 +99,24 @@ public class Recursion {
 
     }
 
+    public static void displayListBackward_iterative(Node head){
+        Stack<Node> aStack = new Stack<Node>();
+        //1- build a stack
+        Node tmp = head;
+        while(tmp != null){
+//            System.out.println(tmp.data);
+            aStack.push(tmp);
+            tmp = tmp.next;
+        }
+
+        //empty stack
+        while(!aStack.empty()){
+            System.out.println(aStack.peek().data);
+            aStack.pop();
+        }
+
+    }
+
     public static void displayListForward_recursive(Node head){
 
         System.out.println(head.data);
@@ -142,7 +162,7 @@ public class Recursion {
         // 5, 1, 3 frist to last
         // 3, 1, 5 last to first
 
-        displayListBackward_recursive(a);  // 3, 1, 5 last to first
+        displayListBackward_iterative(a);  // 3, 1, 5 last to first
 
 
     }
