@@ -89,6 +89,35 @@ public class Recursion {
 
         }
     }
+    static class Record{
+        int first;
+        int last;
+
+        public Record(int first, int last) {
+            this.first = first;
+            this.last = last;
+        }
+    }
+    public static  void displayArrayFromMiddle_iterative(int array [], int first, int last){
+        Stack<Record> aStack = new Stack<Record>();
+//        if(first < 0 || last < 0 )
+//            return;
+//        if(first > last)
+//            return;
+//        if(first == last) {
+//            System.out.println(array[first]);
+//        }else{
+        aStack.push(new Record(first, last));
+        while(!aStack.isEmpty()){
+            Record obj = aStack.pop();
+            if(obj.first <= obj.last){
+                int middle = (obj.first + obj.last) / 2;
+                System.out.println(array[middle]);
+                aStack.push(new Record(middle + 1, obj.last));
+                aStack.push(new Record(obj.first, middle - 1));
+            }
+        }
+    }
 
     public static void displayListForward_iterative(Node head){
         Node tmp = head;
@@ -131,9 +160,9 @@ public class Recursion {
         if(head.next != null)
             displayListBackward_recursive(head.next);
         System.out.println(head.data);
-
-
     }
+
+
     public static void main(String[] args) {
 //        countDown_recursive(10); // 10, 9, 8, ... 1
 //        countUp_recursive(10); // 1, 2, 3, ... 10
@@ -147,7 +176,7 @@ public class Recursion {
 //        displayArrayFromLast_iterative(array, 0, 4); // 1, 4, 2, 3, 5;
 //        displayArrayFromLast_recursive(array, 0, 4); // 1, 4, 2, 3, 5;
 //        displayArrayFromMiddle_recursive(array, 0, 5); // 2, 5, 3, 4, 1
-
+        displayArrayFromMiddle_iterative(array, 0, 5); // 2, 5, 3, 1, 4, 0
         Node a = new Node();
         a.data = 5;
 
@@ -162,7 +191,7 @@ public class Recursion {
         // 5, 1, 3 frist to last
         // 3, 1, 5 last to first
 
-        displayListBackward_iterative(a);  // 3, 1, 5 last to first
+//        displayListBackward_iterative(a);  // 3, 1, 5 last to first
 
 
     }
