@@ -1,8 +1,8 @@
 public class Pair {
-    String key;
+    int key;
     String value;
 
-    public Pair(String key, String value) {
+    public Pair(int key, String value) {
         this.key = key;
         this.value = value;
     }
