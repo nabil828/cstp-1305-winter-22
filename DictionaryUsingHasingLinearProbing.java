@@ -25,6 +25,11 @@ public class DictionaryUsingHasingLinearProbing {
 
     public DictionaryUsingHasingLinearProbing(){
         arr = new PairWithStatus[HASHTABLE_SIZE];
+
+        for(int i = 0; i < arr.length ; i++){
+            arr[i] = new PairWithStatus();
+         }
+
         arr[6] = new PairWithStatus();
         arr[6].aPair.key = 29;
         arr[6].status= STATUS.OCCUPIED;
@@ -58,28 +63,27 @@ public class DictionaryUsingHasingLinearProbing {
         // Returns the index of either the element
         // containing key or an available element in the hash table.
         boolean found = false;
-
+        int availableStateIndex = -1;
         while (!found && arr[index].status != STATUS.EMPTY) { //key is not found and hashTable[index] is not null
-//            if (arr[index].status != STATUS.AVAILABLE) { //hashTable[index] references an entry in the dictionary
+            if (arr[index].status != STATUS.AVAILABLE) { //hashTable[index] references an entry in the dictionary
                 if (arr[index].aPair.key ==  key) //the entry in hashTable[index] contains key
                     found = true;
-                else {
+                else
                     index = (index + 1) % HASHTABLE_SIZE;//next probe index
-                    found = true;
-                }
 
-//            } else // hashTable[index] is available
-//            {
-//                if (this is the first available element encountered)
-//                availableStateIndex = index
-//                index = next probe index
-//            }
+
+            } else // hashTable[index] is available
+            {
+                if ( availableStateIndex == -1)//this is the first available element encountered)
+                    availableStateIndex = index;
+                index = (index + 1) % HASHTABLE_SIZE;// next probe index - linear probing
+            }
         }
 
-//        if (key is found or an available element was not encountered)
-        return index;
-//        else
-//            return availableStateIndex // Index of first entry removed
+        if (found || availableStateIndex == -1 )// or an available element was not encountered)
+            return index;
+        else
+            return availableStateIndex; // Index of first entry removed
     }
     void insert(int key, String value){
 //        if(!this.contains(key)){
@@ -94,16 +98,17 @@ public class DictionaryUsingHasingLinearProbing {
         // else, nothing
     }
 
-//    void remove(int key){
+    void remove(int key){
 //        if(this.contains(key)){
+            arr[probe(hashCode_(key), key)].status = STATUS.AVAILABLE;
 //            for(int i = 0; i < size ; i++) {
-//                if (arr[i].key == key)
-//                    arr[i] = arr[size - 1];
+//            if (arr[i].key == key)
+//                arr[i] = arr[size - 1];
 //            }
-//            size--;
+            size--;
 //        }
-//        // else, nothing
-//    }
+        // else, nothing
+    }
 
 //    void modify(int key, String value){
 //        for(int i = 0; i < size ; i++) {
@@ -133,5 +138,11 @@ public class DictionaryUsingHasingLinearProbing {
 
         DictionaryUsingHasingLinearProbing aDictionary = new DictionaryUsingHasingLinearProbing(); // built-in Java dictionary
         aDictionary.insert(81, "any value"); // should be inserted at index 13
+
+        aDictionary.insert(35, "any value");
+        aDictionary.insert(60, "any value");
+        aDictionary.insert(12, "any value");
+        aDictionary.remove(60);
+        aDictionary.insert(15, "any value"); //should be inserted at index 15
     }
 }
