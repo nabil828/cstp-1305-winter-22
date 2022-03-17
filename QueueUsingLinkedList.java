@@ -25,7 +25,15 @@ public class QueueUsingLinkedList {
         front = front.next;
 
     }
-
+    int getSize(){
+        int size = 0;
+        Node tmpNode = front;
+        while(tmpNode != null){
+            size++;
+            tmpNode = tmpNode.next;
+        }
+        return  size;
+    }
     int peek(){
         return front.data;
     }
