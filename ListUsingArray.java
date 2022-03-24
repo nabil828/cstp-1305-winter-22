@@ -17,7 +17,8 @@ public class ListUsingArray {
             for (int i = size; i >= position; i--) {
                 arr[i + 1] = arr[i];
             }
-        }
+        }else
+            throw new RuntimeException();
 
         arr[position] = a;
         size++;
